@@ -1,20 +1,17 @@
-import React from "react";
-import css from "./Feedback.module.css";
-
-const Feedback = ({ feedback }) => {
-  const feedbackStatus = Object.keys(feedback);
-
+const Feedback = ({ feedbackState, totalFeedback, positiveFeedback }) => {
+  const feedbackStatus = Object.keys(feedbackState);
   return (
     <div>
-      {feedbackStatus.map((item) => {
-        const feedbackValues = feedback;
-
+      {feedbackStatus.map((key) => {
+        const feedbackValues = feedbackState;
         return (
-          <p key={item}>
-            {item}: {feedbackValues[item]}
+          <p key={key}>
+            {key}: {feedbackValues[key]}
           </p>
         );
       })}
+      {totalFeedback > 0 && <p>Total: {totalFeedback}</p>}
+      {positiveFeedback > 0 && <p>Positive: {positiveFeedback}%</p>}
     </div>
   );
 };
